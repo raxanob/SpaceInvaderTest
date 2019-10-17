@@ -44,11 +44,10 @@ class GameOverScene: SKScene {
     
     let gameOverLabel = SKLabelNode(fontNamed: "Galvji")
     gameOverLabel.fontSize = 50
-    gameOverLabel.fontColor = SKColor.white
+    gameOverLabel.fontColor = SKColor.systemYellow
     gameOverLabel.text = "Game"
     gameOverLabel.fontName = "Silkscreen Expanded"
     gameOverLabel.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.0 * self.size.height);
-    gameOverLabel.fontColor = SKColor.systemYellow
     
     self.addChild(gameOverLabel)
     
@@ -61,23 +60,71 @@ class GameOverScene: SKScene {
     
     self.addChild(gameOverLabel2)
     
-    let tapLabel = SKLabelNode(fontNamed: "Galvji")
-    tapLabel.fontSize = 19
-    tapLabel.fontColor = SKColor.white
-    tapLabel.text = "Toque para jogar novamente"
-    tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 250);
-    tapLabel.fontColor = SKColor.green
+    let labelReturnGame = SKLabelNode(fontNamed: "Galvji")
+    labelReturnGame.fontSize = 17
+    labelReturnGame.fontColor = SKColor.white
+    labelReturnGame.text = "Toque para jogar novamente"
+    labelReturnGame.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 200);
+    labelReturnGame.fontColor = SKColor.black
 
     
-    self.addChild(tapLabel)
+    self.addChild(labelReturnGame)
+    
+    let labelReturnMain = SKLabelNode(fontNamed: "Galvji")
+    labelReturnMain.fontSize = 17
+    labelReturnMain.fontColor = SKColor.white
+    labelReturnMain.text = "Toque para ir para a tela inicial"
+    labelReturnMain.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 250);
+    labelReturnMain.fontColor = SKColor.black
+
+    
+    self.addChild(labelReturnMain)
     
     // black space color
     self.backgroundColor = SKColor.black
     
+    let buttonReturnGame = SKSpriteNode()
+    buttonReturnGame.name = "btn"
+    buttonReturnGame.color = SKColor.systemPink
+    buttonReturnGame.size.height = 30
+    buttonReturnGame.size.width = UIScreen.main.bounds.size.width - 40
+    buttonReturnGame.position = CGPoint(x: labelReturnGame.frame.midX, y: labelReturnGame.frame.midY)
+    
+    self.addChild(buttonReturnGame)
+    
+    let buttonReturnMain = SKSpriteNode()
+    buttonReturnMain.name = "btn2"
+    buttonReturnMain.color = SKColor.systemGreen
+    buttonReturnMain.size.height = 30
+    buttonReturnMain.size.width = UIScreen.main.bounds.size.width - 40
+    buttonReturnMain.position = CGPoint(x: labelReturnGame.frame.midX, y: labelReturnMain.frame.midY)
+    
+    self.addChild(buttonReturnMain)
+    
   }
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    let touch = touches.first
+    let positionInScene = touch!.location(in: self)
+    let touchedNode = self.atPoint(positionInScene)
+    
+    if let name = touchedNode.name {
+        if name == "btn" {
+
+            let gameScene = GameScene(size: self.size)
+            gameScene.scaleMode = .aspectFill
+            
+            self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
+
+          }
+        if name == "btn2"{
+            let gameScene = MainSceneTest(size: self.size)
+            gameScene.scaleMode = .aspectFill
+            
+            self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
+        }
+      }
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)  {
@@ -89,11 +136,8 @@ class GameOverScene: SKScene {
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
-    
-    let gameScene = GameScene(size: self.size)
-    gameScene.scaleMode = .aspectFill
-    
-    self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
+
     
   }
+
 }

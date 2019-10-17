@@ -507,7 +507,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // 1
     if existingBullet == nil {
-        if ship == childNode(withName: kShipName) as! SKSpriteNode {
+        if let ship = childNode(withName: kShipName){
         let bullet = makeBullet(ofType: .shipFired)
         // 2
         bullet.position = CGPoint(
