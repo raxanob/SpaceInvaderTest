@@ -45,16 +45,29 @@ class GameOverScene: SKScene {
     let gameOverLabel = SKLabelNode(fontNamed: "Galvji")
     gameOverLabel.fontSize = 50
     gameOverLabel.fontColor = SKColor.white
-    gameOverLabel.text = "Game Over!"
+    gameOverLabel.text = "Game"
+    gameOverLabel.fontName = "Silkscreen Expanded"
     gameOverLabel.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.0 * self.size.height);
+    gameOverLabel.fontColor = SKColor.systemYellow
     
     self.addChild(gameOverLabel)
+    
+    let gameOverLabel2 = SKLabelNode(fontNamed: "Galvji")
+    gameOverLabel2.fontSize = 50
+    gameOverLabel2.fontColor = SKColor.white
+    gameOverLabel2.text = "Over!"
+    gameOverLabel2.fontName = "Silkscreen Expanded"
+    gameOverLabel2.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.5 * self.size.height);
+    
+    self.addChild(gameOverLabel2)
     
     let tapLabel = SKLabelNode(fontNamed: "Galvji")
     tapLabel.fontSize = 19
     tapLabel.fontColor = SKColor.white
     tapLabel.text = "Toque para jogar novamente"
-    tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 40);
+    tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 250);
+    tapLabel.fontColor = SKColor.green
+
     
     self.addChild(tapLabel)
     

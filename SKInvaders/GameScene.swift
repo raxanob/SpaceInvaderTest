@@ -28,6 +28,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
     var ship: SKSpriteNode = SKSpriteNode(imageNamed: "nave.png")
     
+    let heart0: SKSpriteNode = SKSpriteNode(imageNamed: "coracao.png")
+    
+    let heart1: SKSpriteNode = SKSpriteNode(imageNamed: "coracao.png")
+    
+    let heart2: SKSpriteNode = SKSpriteNode(imageNamed: "coracao.png")
+    
     var shipFireTimer: Timer?
     
     var contentCreated = false
@@ -42,8 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var tapQueue = [Int]()
     var contactQueue = [SKPhysicsContact]()
       
-    var score: Int = 0
-    var shipHealth: Float = 0.5
+    var shipHealth: Float = 1.0
         
     let kMinInvaderBottomHeight: Float = 40.0
     var gameEnding: Bool = false
@@ -82,7 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let kShipSize = CGSize(width: 30, height: 16)
   let kShipName = "nave"
   
-  let kScoreHudName = "scoreHud"
   let kHealthHudName = "healthHud"
   
   let kShipFiredBulletName = "shipFiredBullet"
@@ -233,53 +237,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func setupHud() {
-    // 1
-    let scoreLabel = SKLabelNode(fontNamed: "Galvji")
-    scoreLabel.name = kScoreHudName
-    scoreLabel.fontSize = 20
-    
-    // 2
-    scoreLabel.fontColor = SKColor.green
-    scoreLabel.text = String(format: "Score: %04u", 0)
-    
-    // 3
-    scoreLabel.position = CGPoint(
-      x: 80,
-      y: size.height - (40 + scoreLabel.frame.size.height/2)
-    )
-    addChild(scoreLabel)
     
     // 4
-    let healthLabel = SKLabelNode(fontNamed: "Galvji")
+    let healthLabel = SKLabelNode(fontNamed: "slkscre")
     healthLabel.name = kHealthHudName
     healthLabel.fontSize = 20
     
     // 5
-    healthLabel.fontColor = SKColor.red
-    healthLabel.text = String(format: "Vida: %.1f%%", shipHealth * 100.0)
+    healthLabel.fontColor = #colorLiteral(red: 1, green: 0.737254902, blue: 0.8431372549, alpha: 1)
+    healthLabel.text = String(format: "Vida: ", shipHealth * 100.0)
     
     // 6
     healthLabel.position = CGPoint(
-      x: frame.size.width - 80,
+      x: frame.size.width - 100,
       y: size.height - (40 + healthLabel.frame.size.height/2)
     )
     addChild(healthLabel)
-  }
-  
-  func adjustScore(by points: Int) {
-    score += points
     
-    if let score = childNode(withName: kScoreHudName) as? SKLabelNode {
-      score.text = String(format: "Score: %04u", self.score)
-    }
+    // heart 0
+    heart0.position = CGPoint(
+        x: frame.size.width - 60,
+        y: size.height - (33 + healthLabel.frame.size.height/2)
+    )
+    heart0.size = CGSize(width: 15, height: 15)
+    addChild(heart0)
+    
+    // heart 1
+    heart1.position = CGPoint(
+        x: frame.size.width - 40,
+        y: size.height - (33 + healthLabel.frame.size.height/2)
+    )
+    heart1.size = CGSize(width: 15, height: 15)
+    addChild(heart1)
+    
+    // heart 2
+    heart2.position = CGPoint(
+        x: frame.size.width - 20,
+        y: size.height - (33 + healthLabel.frame.size.height/2)
+    )
+    heart2.size = CGSize(width: 15, height: 15)
+    addChild(heart2)
+
   }
 
   func adjustShipHealth(by healthAdjustment: Float) {
     // 1
     shipHealth = max(shipHealth + healthAdjustment, 0)
     
-    if let health = childNode(withName: kHealthHudName) as? SKLabelNode {
-      health.text = String(format: "Vida: %.1f%%", self.shipHealth * 100)
+    if heart2.size == CGSize(width: 15, height: 15) {
+        heart2.removeFromParent()
+        heart2.size = CGSize(width: 0, height: 0)
+    } else {
+        heart1.removeFromParent()
     }
   }
   
@@ -517,7 +526,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           withDuration: 1.0,
           andSoundFileName: "ShipBullet.wav"
         )
-      }
+        } else {
+            GameOverScene()
+        }
     }
   }
     func touchDown(atPoint: CGPoint) {
@@ -601,8 +612,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       contact.bodyA.node!.removeFromParent()
       contact.bodyB.node!.removeFromParent()
       
-      // 4
-      adjustScore(by: 100)
     }
   }
   
@@ -624,7 +633,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // 3
-    ship = childNode(withName: kShipName) as? SKSpriteNode ?? GameOverScene
+    let ship = childNode(withName: kShipName)
     
     // 4
     return invader == nil || invaderTooLow || ship == nil

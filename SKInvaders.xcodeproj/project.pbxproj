@@ -18,6 +18,7 @@
 		CDF07A091975453100FFAB46 /* ShipBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = CDF079F51975453100FFAB46 /* ShipBullet.wav */; };
 		CDF07A0A1975453100FFAB46 /* ShipHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = CDF079F61975453100FFAB46 /* ShipHit.wav */; };
 		CDF07A1A1975510100FFAB46 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF07A191975510100FFAB46 /* GameOverScene.swift */; };
+		E09C63772357C67900561067 /* slkscre.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E09C63762357C67900561067 /* slkscre.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		CDF079F51975453100FFAB46 /* ShipBullet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipBullet.wav; sourceTree = "<group>"; };
 		CDF079F61975453100FFAB46 /* ShipHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipHit.wav; sourceTree = "<group>"; };
 		CDF07A191975510100FFAB46 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		E09C63762357C67900561067 /* slkscre.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slkscre.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		CDF079CC1975428800FFAB46 /* SKInvaders */ = {
 			isa = PBXGroup;
 			children = (
+				E09C63762357C67900561067 /* slkscre.ttf */,
 				CDF079F01975453100FFAB46 /* Assets */,
 				CDF079CF1975428800FFAB46 /* AppDelegate.swift */,
 				CDF079D31975428800FFAB46 /* GameScene.swift */,
@@ -181,6 +184,7 @@
 				CDF07A061975453100FFAB46 /* AssetLicensingNotes.txt in Resources */,
 				CDF07A091975453100FFAB46 /* ShipBullet.wav in Resources */,
 				CDF079D91975428800FFAB46 /* Main.storyboard in Resources */,
+				E09C63772357C67900561067 /* slkscre.ttf in Resources */,
 				CDF07A071975453100FFAB46 /* InvaderBullet.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
