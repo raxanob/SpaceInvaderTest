@@ -44,7 +44,7 @@ class GameOverScene: SKScene {
     
     let gameOverLabel = SKLabelNode(fontNamed: "Galvji")
     gameOverLabel.fontSize = 50
-    gameOverLabel.fontColor = SKColor.systemYellow
+    gameOverLabel.fontColor = #colorLiteral(red: 0.7843137255, green: 0.8235294118, blue: 0, alpha: 1)
     gameOverLabel.text = "Game"
     gameOverLabel.fontName = "Silkscreen Expanded"
     gameOverLabel.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.0 * self.size.height);
@@ -62,44 +62,40 @@ class GameOverScene: SKScene {
     
     let labelReturnGame = SKLabelNode(fontNamed: "Galvji")
     labelReturnGame.fontSize = 17
-    labelReturnGame.fontColor = SKColor.white
-    labelReturnGame.text = "Toque para jogar novamente"
-    labelReturnGame.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 200);
     labelReturnGame.fontColor = SKColor.black
-
+    labelReturnGame.text = "Jogar novamente"
+    labelReturnGame.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 200);
     
     self.addChild(labelReturnGame)
     
-    let labelReturnMain = SKLabelNode(fontNamed: "Galvji")
-    labelReturnMain.fontSize = 17
-    labelReturnMain.fontColor = SKColor.white
-    labelReturnMain.text = "Toque para ir para a tela inicial"
-    labelReturnMain.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 250);
-    labelReturnMain.fontColor = SKColor.black
-
-    
-    self.addChild(labelReturnMain)
-    
-    // black space color
-    self.backgroundColor = SKColor.black
-    
     let buttonReturnGame = SKSpriteNode()
     buttonReturnGame.name = "btn"
-    buttonReturnGame.color = SKColor.systemPink
+    buttonReturnGame.color = #colorLiteral(red: 0.7843137255, green: 0.8235294118, blue: 0, alpha: 1)
     buttonReturnGame.size.height = 30
     buttonReturnGame.size.width = UIScreen.main.bounds.size.width - 40
     buttonReturnGame.position = CGPoint(x: labelReturnGame.frame.midX, y: labelReturnGame.frame.midY)
     
     self.addChild(buttonReturnGame)
+
+    let labelReturnMain = SKLabelNode(fontNamed: "Galvji")
+    labelReturnMain.fontSize = 17
+    labelReturnMain.fontColor = SKColor.black
+    labelReturnMain.text = "Ir para a tela inicial"
+    labelReturnMain.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 250);
+    
+    self.addChild(labelReturnMain)
     
     let buttonReturnMain = SKSpriteNode()
     buttonReturnMain.name = "btn2"
-    buttonReturnMain.color = SKColor.systemGreen
+    buttonReturnMain.color = #colorLiteral(red: 0.7843137255, green: 0.8235294118, blue: 0, alpha: 1)
     buttonReturnMain.size.height = 30
     buttonReturnMain.size.width = UIScreen.main.bounds.size.width - 40
     buttonReturnMain.position = CGPoint(x: labelReturnGame.frame.midX, y: labelReturnMain.frame.midY)
     
     self.addChild(buttonReturnMain)
+    
+    // black space color
+    self.backgroundColor = SKColor.black
     
   }
   

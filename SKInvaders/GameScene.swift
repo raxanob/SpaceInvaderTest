@@ -528,6 +528,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         )
         } else {
             GameOverScene()
+            print("tela de game over")
         }
     }
   }
